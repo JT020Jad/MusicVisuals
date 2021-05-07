@@ -178,12 +178,14 @@ and looking at the tranquil GIFs while working on it. This shows me that the ass
 
 # What I would have done differently
 In the second track and GIF, I ran into a weird stuttering bug on the GIF and I believe the issue might be that the GIF and visualiser are both being done in the same draw() method.
+
 To address this in the future, I would:
 - Seperate the GIF and the visualiser from each other
 - Instantiate GIF external to the draw() method
 - Potentially resize the GIF to be a smaller size than the entire window, that way it gives some free space for the visualiser to render in
 
 When I was revising the code, I realised that all the key presses were in if statements and they also called and displayed the image array within them. This might prove to be inefficient in bigger programs. An if-else statement has a worst case time complexity of O(N). However, since I have 4 of them that adds a lot more complexity to the program. Also, within them are for loops, which have a complexity of O(N) making the total complexity O(13) which is rather inefficient and this is evident with the stuttering in the GIFs and visual effects
+
 To fix this:
 - Capture key presses and pass them to a switch case statement
 - Display the GIFs within the switch case or if possible, in a method of it's own
