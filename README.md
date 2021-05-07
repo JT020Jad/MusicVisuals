@@ -9,13 +9,13 @@ My mind immediately jumped to *Lofi Hip-Hop*. This is very substantial to me per
 remains my go to for relaxation. It was truly, in my opinion, something that you could listen to and just chill. 
 What makes lofi more appealing is the fact that it is very very simplistic in nature and consists of the same low-fidelity beat being repeated, causing a sense of tranquility. 
 My assignment involved three lofi  lofi tracks each with their own unique GIF and visualiser. The idea of using a GIF was the first idea that I had and the one
-I decided to stick with as the repetitive nature of a GIF compliments the repetitive beat. Also, by using a GIF I was able to portray calmness and relaxation
-in the best possible way, and the visualisers were given colours that compliment the scene(s). 
+I decided to stick with as the repetitive nature of a GIF compliments the repetitive beat. Another reason I chose to utilise a GIF was because I was fairly certain that the idea in itself was a unique one and that no one else had done the same thing. Also, by using a GIF I was able to portray calmness and relaxation in the best possible way, and the visualisers were given colours that compliment the scene(s). 
 
 This can be seen in the three scenes I have chosen:
 1. Asleep On the Train
 2. A Dark Stormy Night
 3. Night Time in the Big City 
+
 and their respective tracks:
 1. [Kudasaibeats - Technicolor](https://www.youtube.com/watch?v=EaE4QKv9lGk)
 2. [WYS - Close My Eyes](https://www.youtube.com/watch?v=ICkW1_r9f80&t=29s)
@@ -37,7 +37,7 @@ and their respective tracks:
 Instantiating the array of images. This is how the GIF was created. I firstly found a GIF I liked , and then I split it up into its individual frames and inserted them into an array
 
 ```Java
-	PImage [] sleepOnTrain = new PImage [27];
+PImage [] sleepOnTrain = new PImage [27];
     PImage [] nightVibes = new PImage [54];
     PImage [] nightCity = new PImage [24];
 ```
