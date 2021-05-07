@@ -183,23 +183,14 @@ To address this in the future, I would:
 - Instantiate GIF external to the draw() method
 - Potentially resize the GIF to be a smaller size than the entire window, that way it gives some free space for the visualiser to render in
 
-When I was revising the code, I realised that all the key presses were in if statements and they also called and displayed the image array within them. This might prove to be inefficient in bigger programs. An if-else statement has a worst case time complexity of O(N). However, since I have 4 of them that adds a lot more complexity to the program
+When I was revising the code, I realised that all the key presses were in if statements and they also called and displayed the image array within them. This might prove to be inefficient in bigger programs. An if-else statement has a worst case time complexity of O(N). However, since I have 4 of them that adds a lot more complexity to the program. Also, within them are for loops, which have a complexity of O(N) making the total complexity O(13) which is rather inefficient and this is evident with the stuttering in the GIFs and visual effects
 To fix this:
 - Capture key presses and pass them to a switch case statement
 - Display the GIFs within the switch case or if possible, in a method of it's own
 
 
 
-This is a youtube video:
+# YouTube Video
 
-[![YouTube](http://img.youtube.com/vi/J2kHSSFA4NU/0.jpg)](https://www.youtube.com/watch?v=J2kHSSFA4NU)
-
-This is a table:
-
-| Heading 1 | Heading 2 |
-|-----------|-----------|
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
+[![YouTube](https://i.ytimg.com/an_webp/oMr7Q2mqGFY/mqdefault_6s.webp?du=3000&sqp=CMr-1oQG&rs=AOn4CLA8KtK416DYq3EX8PU2UuslxX8isQ)](https://youtu.be/oMr7Q2mqGFY)
 
