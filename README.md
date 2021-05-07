@@ -1,8 +1,8 @@
 # Music Visualiser Project
 
-Name:
+Name: Mohammad Touihri
 
-Student Number: 
+Student Number: C19319183
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
@@ -18,6 +18,9 @@ Student Number:
 # How it works
 
 # What I am most proud of in the assignment
+
+
+
 
 # Markdown Tutorial
 
