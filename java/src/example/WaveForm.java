@@ -1,17 +1,17 @@
-package example;
+package ie.tudublin;
 
 import processing.core.*;
 
 // This is an example of a visual that renders the waveform
 public class WaveForm
 {
-    MyVisual mv;
+    C19319183 mv;
     float cy = 0;
 
-    public WaveForm(MyVisual mv)
+    public WaveForm(C19319183 mv)
     {
         this.mv = mv;
-        cy = this.mv.height / 2;
+        cy = this.mv.height - 45;
     }
 
     public void render()

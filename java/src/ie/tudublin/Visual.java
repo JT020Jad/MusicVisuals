@@ -4,39 +4,53 @@ import processing.core.PApplet;
 import ddf.minim.*;
 import ddf.minim.analysis.FFT;
 
+
 public abstract class Visual extends PApplet
 {
-	private int frameSize = 512;
-	private int sampleRate = 44100;
+	int frameSize = 512;
+	int sampleRate = 44100;
 
-	private float[] bands;
-	private float[] smoothedBands;
+	float[] bands;
+	float[] smoothedBands;
 
-	private Minim minim;
-	private AudioInput ai;
-	private AudioPlayer ap;
-	private AudioBuffer ab;
-	private FFT fft;
 
-	private float amplitude  = 0;
-	private float smothedAmplitude = 0;
+	Minim minim;
+	AudioInput ai;
 
+
+	AudioPlayer ap;
+	AudioPlayer ap1;
+	AudioPlayer ap2;
+
+
+	AudioBuffer ab;
+	FFT fft;
+
+	float amplitude  = 0;
+	float smothedAmplitude = 0;
 	
 	
+	float[] lerpedBuffer;
 	public void startMinim() 
 	{
 		minim = new Minim(this);
+		
 
 		fft = new FFT(frameSize, sampleRate);
 
 		bands = new float[(int) log2(frameSize)];
   		smoothedBands = new float[bands.length];
 
+		colorMode(HSB);
+        lerpedBuffer = new float[width];
 	}
 
-	float log2(float f) {
+
+	float log2(float f) 
+	{
 		return log(f) / log(2.0f);
 	}
+
 
 	protected void calculateFFT() throws VisualException
 	{
@@ -47,7 +61,7 @@ public abstract class Visual extends PApplet
 		}
 		else
 		{
-			throw new VisualException("You must call startListening or loadAudio before calling fft");
+			throw new VisualException("You must call startListening() or loadAudio() before calling fft");
 		}
 	}
 
@@ -79,17 +93,32 @@ public abstract class Visual extends PApplet
 		}
 	}
 
+
 	public void startListening()
 	{
 		ai = minim.getLineIn(Minim.MONO, frameSize, 44100, 16);
 		ab = ai.left;
 	}
 
+	
 	public void loadAudio(String filename)
 	{
 		ap = minim.loadFile(filename, frameSize);
 		ab = ap.mix;
 	}
+
+	public void loadAudio1(String filename)
+	{
+		ap1 = minim.loadFile(filename, frameSize);
+		ab = ap1.mix;
+	}
+
+	public void loadAudio2(String filename)
+	{
+		ap2 = minim.loadFile(filename, frameSize);
+		ab = ap2.mix;
+	}
+
 
 	public int getFrameSize() {
 		return frameSize;
@@ -136,9 +165,22 @@ public abstract class Visual extends PApplet
 		return smothedAmplitude;
 	}
 
-	public AudioPlayer getAudioPlayer() {
+
+	public AudioPlayer getAudioPlayer() 
+	{
 		return ap;
 	}
+
+	public AudioPlayer getAudioPlayer1() 
+	{
+		return ap1;
+	}
+
+	public AudioPlayer getAudioPlayer2()
+	{
+		return ap2;
+	}
+
 
 	public FFT getFFT() {
 		return fft;
