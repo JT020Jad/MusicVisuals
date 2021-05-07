@@ -3,12 +3,12 @@ package ie.tudublin;
 import processing.core.*;
 
 // This is an example of a visual that renders the waveform
-public class WaveForm
+public class Visualisers
 {
     Menu mv;
     float cy = 0;
 
-    public WaveForm(Menu mv)
+    public Visualisers(Menu mv)
     {
         this.mv = mv;
         cy = this.mv.height;
@@ -24,5 +24,5 @@ public class WaveForm
 
             mv.line(0, cy, i, cy + cy * mv.getAudioBuffer().get(i));
         }
-    }
+    } // End render()
 }

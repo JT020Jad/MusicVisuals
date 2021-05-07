@@ -3,47 +3,51 @@ package ie.tudublin;
 import java.util.*;
 import processing.core.PImage;
 
-public class Menu extends Visual
+public class Menu extends VisualiserObjects
 {    
-    WaveForm wf;
+    Visualisers wf;
 
     PImage [] sleepOnTrain = new PImage [27];
     PImage [] nightVibes = new PImage [54];
     PImage [] nightCity = new PImage [24];
     
-	float[] lerpedBuffer;
+	
 
 
-    public void settings()
+    public void settings()  
     {
         size(1024, 500);
-        
-        // Use this to make fullscreen
-        //fullScreen();
-        
-        // Use this to make fullscreen and use P3D for 3D graphics
-        //fullScreen(P3D, SPAN); 
-    }
+
+        /*  
+            Fullscreen will break the program (out of frame)
+            fullScreen();
+        */
+
+        // Adds Anti-Aliasing
+        smooth(8);
+    } // End settings()
 
 
+    
     public void setup()
     {
         startMinim();
-                
+         
         // Call loadAudio to load an audio file to process 
         loadAudio("kudasaibeats - technicolor.mp3"); 
         loadAudio1("WYS - Close My Eyes.mp3"); 
         loadAudio2("Sagun - I'll Keep You Safe.mp3"); 
         
-
-        wf = new WaveForm(this);
+        
+        wf = new Visualisers(this);
         colorMode(HSB);
         lerpedBuffer = new float[width];
 
         frameRate(21);
-    }
+    } // End setup()
 
 
+    
     public void keyPressed()
     {
         if (key == '1')
@@ -54,22 +58,22 @@ public class Menu extends Visual
             if(getAudioPlayer().isPlaying())
             {
                 getAudioPlayer().pause();
-            }
+            } // End if
 
             else
             {
                 getAudioPlayer().play();
-                smooth();
+                //smooth();
                 for(int i = 0 ; i < 26 ; i ++)
                 {
                     sleepOnTrain[i] = loadImage("sleepOnTrainFrame" + i + ".gif");    
-                }
-            }
+                } // End for
+            } // End else
 
 
             // Reset the key press to a neutral state
             key = '0';
-        }
+        } // End if
 
 
         if(key == '2')
@@ -80,22 +84,22 @@ public class Menu extends Visual
             if(getAudioPlayer1().isPlaying())
             {
                 getAudioPlayer1().pause();
-            }
+            } // End if
             
             else
             {
                 getAudioPlayer1().play();
-                smooth();
+                //smooth();
                 for(int i = 0 ; i < 54 ; i ++)
                 {
                     nightVibes[i] = loadImage("frame_" + i + "_delay-0.1s" + ".gif");
-                }
-            }
+                } // for
+            } // End else
 
 
             // Reset the key press to a neutral state
             key = '0';
-        }
+        } // End if
 
 
         if(key == '3')
@@ -106,22 +110,22 @@ public class Menu extends Visual
             if(getAudioPlayer2().isPlaying())
             {
                 getAudioPlayer2().pause();
-            }
+            } // End if
             
             else
             {
                 getAudioPlayer2().play();
-                smooth();
+                //smooth();
                 for(int i = 0 ; i < 24 ; i ++)
                 {
                     nightCity[i] = loadImage("nightCity" + i + ".gif");
-                }
-            }
+                } // End for
+            } // End else
 
 
             // Reset the key press to a neutral state
             key = '0';
-        } 
+        } // End if
 
 
         if(key == ' ')
@@ -135,8 +139,8 @@ public class Menu extends Visual
 
             // Reset the key press to a neutral state
             key = '0';
-        }
-    }
+        } // End if
+    } // End keyPressed()
 
 
 
@@ -154,7 +158,7 @@ public class Menu extends Visual
         for (int i = 0; i < ab.size(); i ++)
         {
             sum += abs(ab.get(i));
-        }
+        } // End for
         average = sum / ab.size();
 
         // Move lerpedAverage 10% closer to average every frame
@@ -162,10 +166,10 @@ public class Menu extends Visual
 
 
 
-        text("Press '1' to play and pause Track1", 50, 50);
-        text("Press '2' to play and pause Track2", 50, 65);
-        text("Press '2' to play and pause Track3", 50, 80);
-        text("Press 'Spacebar' to reset the songs", 50, 95);
+        text("Press '1' to play and pause Track1", halfWidth, halfHeight + 15);
+        text("Press '2' to play and pause Track2", halfWidth, halfHeight + 30);
+        text("Press '3' to play and pause Track3", halfWidth, halfHeight + 45);
+        text("Press 'Spacebar' to reset the songs", halfWidth, halfHeight + 60);
 
         
         // Track 1
@@ -183,6 +187,7 @@ public class Menu extends Visual
             stroke(255);
             text("Press '1' to play and pause Track1", 50, 50);
             text("Press '2' to play and pause Track2", 50, 65);
+            text("Press '3' to play and pause Track3", 50, 80);
 
             text("Song: Kudasaibeats - Technicolor", 800, 50);
 
@@ -231,7 +236,7 @@ public class Menu extends Visual
             strokeWeight(2);
             noFill();
             ellipse(130, 410, 50 + (lerpedAverage * 500), 50 + (lerpedAverage * 500));
-        }
+        } // End else if
 
 
 
@@ -249,13 +254,13 @@ public class Menu extends Visual
             stroke(255);
             text("Press '1' to play and pause Track1", 50, 50);
             text("Press '2' to play and pause Track2", 50, 65);
+            text("Press '3' to play and pause Track3", 50, 80);
 
             text("Song: WYS - Close My Eyes", 800, 50);
 
 
             wf.render();
-            //wf.flippedRender();
-        }
+        } // End else if
 
 
 
@@ -276,6 +281,31 @@ public class Menu extends Visual
             text("Press '3' to play and pause Track3", 120, 115);
 
             text("Song: Sagun - I'll Keep You Safe", 700, 85);
-        }
-    }
-}
+
+
+
+            for (int i = 0; i < ab.size(); i++) 
+            {
+                float c = map(i, 0, ab.size(), 0, 255);
+                stroke(c, 255, 255);
+                lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.4f);  
+
+                // Lines on the left of the screen
+                line(0, i, lerpedBuffer[i] * halfHeight * 4, i);
+
+                // Lines on the right side of the screen
+                line(width, i, width - (lerpedBuffer[i] * halfHeight * 4), i);
+
+                // Lines on the top of the screen
+                line(1024, 0, i, lerpedBuffer[i] * halfHeight * 4);
+                line(0, 0, i, lerpedBuffer[i] * halfHeight * 4);
+
+                // Lines on the bottom of the screen
+                line(1024, height, i, height - (lerpedBuffer[i] * halfHeight * 4));
+                line(0, height, i, height - (lerpedBuffer[i] * halfHeight * 4));
+            } // End for    
+        } // End else if
+
+    }// End draw()
+} // End Class Menu
+
