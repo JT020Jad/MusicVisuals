@@ -146,60 +146,49 @@ if (key == '1')
         } // End if
 ```
 
+The third and final visualiser uses lerping to smoothen the lines and give a more natural-looking flow to the visualiser
+```Java
+for (int i = 0; i < ab.size(); i++) 
+            {
+                float c = map(i, 0, ab.size(), 0, 255);
+                stroke(c, 255, 255);
+                lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.4f);  
+
+                // Lines on the left of the screen
+                line(0, i, lerpedBuffer[i] * halfHeight * 4, i);
+
+                // Lines on the right side of the screen
+                line(width, i, width - (lerpedBuffer[i] * halfHeight * 4), i);
+
+                // Lines on the top of the screen
+                line(1024, 0, i, lerpedBuffer[i] * halfHeight * 4);
+                line(0, 0, i, lerpedBuffer[i] * halfHeight * 4);
+
+                // Lines on the bottom of the screen
+                line(1024, height, i, height - (lerpedBuffer[i] * halfHeight * 4));
+                line(0, height, i, height - (lerpedBuffer[i] * halfHeight * 4));
+            } // End for    
+```
+
 
 # What I am most proud of in the assignment
-
+What I am most proud of in this assignment is the concept of using a GIF and inserting the visualisers to react to music that I really enjoy. I was at ease working on this project as I enjoyed listening to the music
+and looking at the tranquil GIFs while working on it. This shows me that the assignment certainly lives up to its function and purpose of being, "Something beautiful to enjoy while listening to music".
 
 
 # What I would have done differently
-gif and visualiser in different classes
-regiser key press then pass value to a switch case statement
+In the second track and GIF, I ran into a weird stuttering bug on the GIF and I believe the issue might be that the GIF and visualiser are both being done in the same draw() method.
+To address this in the future, I would:
+- Seperate the GIF and the visualiser from each other
+- Instantiate GIF external to the draw() method
+- Potentially resize the GIF to be a smaller size than the entire window, that way it gives some free space for the visualiser to render in
+
+When I was revising the code, I realised that all the key presses were in if statements and they also called and displayed the image array within them. This might prove to be inefficient in bigger programs. An if-else statement has a worst case time complexity of O(N). However, since I have 4 of them that adds a lot more complexity to the program
+To fix this:
+- Capture key presses and pass them to a switch case statement
+- Display the GIFs within the switch case or if possible, in a method of it's own
 
 
-
-
-# Markdown Tutorial
-
-This is *emphasis*
-
-This is a bulleted list
-
-- Item
-- Item
-
-This is a numbered list
-
-1. Item
-1. Item
-
-This is a [hyperlink](http://bryanduggan.org)
-
-# Headings
-## Headings
-#### Headings
-##### Headings
-
-
-So is this without specifying the language:
-
-```
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
-
-This is an image using a relative URL:
-
-![An image](images/p8.png)
-
-This is an image using an absolute URL:
-
-![A different image](https://bryanduggandotorg.files.wordpress.com/2019/02/infinite-forms-00045.png?w=595&h=&zoom=2)
 
 This is a youtube video:
 
