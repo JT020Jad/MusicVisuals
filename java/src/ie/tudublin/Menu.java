@@ -6,13 +6,13 @@ import processing.core.PImage;
 public class Menu extends Visual
 {    
     WaveForm wf;
-    //AudioBandsVisual abv;
 
     PImage [] sleepOnTrain = new PImage [27];
     PImage [] nightVibes = new PImage [54];
     PImage [] nightCity = new PImage [24];
     
 	float[] lerpedBuffer;
+
 
     public void settings()
     {
@@ -40,7 +40,6 @@ public class Menu extends Visual
         colorMode(HSB);
         lerpedBuffer = new float[width];
 
-        //abv = new AudioBandsVisual(this);
         frameRate(21);
     }
 
@@ -118,6 +117,10 @@ public class Menu extends Visual
                     nightCity[i] = loadImage("nightCity" + i + ".gif");
                 }
             }
+
+
+            // Reset the key press to a neutral state
+            key = '0';
         } 
 
 
@@ -136,6 +139,7 @@ public class Menu extends Visual
     }
 
 
+
     float lerpedAverage = 0;
 
     public void draw()
@@ -145,6 +149,7 @@ public class Menu extends Visual
         float average = 0;
         float sum = 0;
         
+
         // Calculate the average of the buffer
         for (int i = 0; i < ab.size(); i ++)
         {
@@ -266,32 +271,11 @@ public class Menu extends Visual
             ab = ap2.mix;
             
             stroke(255);
-            text("Press '1' to play and pause Track1", 50, 50);
-            text("Press '2' to play and pause Track2", 50, 65);
-            text("Press '3' to play and pause Track3", 50, 85);
+            text("Press '1' to play and pause Track1", 120, 85);
+            text("Press '2' to play and pause Track2", 120, 100);
+            text("Press '3' to play and pause Track3", 120, 115);
 
-            text("Song: Sagun - I'll Keep You Safe", 700, 110);
-
-
+            text("Song: Sagun - I'll Keep You Safe", 700, 85);
         }
-        
-        
-        try
-        {
-            // Call this if you want to use FFT data
-            calculateFFT(); 
-        }
-        catch(VisualException e)
-        {
-            e.printStackTrace();
-        }
-        // Call this is you want to use frequency bands
-        calculateFrequencyBands(); 
-
-        // Call this is you want to get the average amplitude
-        calculateAverageAmplitude(); 
-        
-       
-        //abv.render();
     }
 }
