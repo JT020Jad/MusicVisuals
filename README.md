@@ -34,6 +34,20 @@ and their respective tracks:
 
 
 # How it works
+Instantiating the array of images. This is how the GIF was created. I firstly found a GIF I liked , and then I split it up into its individual frames and inserted them into an array
+
+```Java
+	PImage [] sleepOnTrain = new PImage [27];
+    PImage [] nightVibes = new PImage [54];
+    PImage [] nightCity = new PImage [24];
+```
+The images were looped indefinitely using a for loop to produce the GIF
+```Java
+	for(int i = 0 ; i < 24 ; i ++)
+    {
+        nightCity[i] = loadImage("nightCity" + i + ".gif");
+    } // End for
+```
 
 
 
@@ -69,18 +83,6 @@ This is a [hyperlink](http://bryanduggan.org)
 #### Headings
 ##### Headings
 
-This is code:
-
-```Java
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
 
 So is this without specifying the language:
 
